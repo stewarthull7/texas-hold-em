@@ -84,7 +84,7 @@ class Hand {
   }
 
   tally() {
-    // TODO: Loop through each card and map its suits and kinds.
+    // Loop through each card and map its suits and kinds.
     for (let card of this.cards) {
       this.kinds[card.kind]++
       this.suits[card.suit]++
