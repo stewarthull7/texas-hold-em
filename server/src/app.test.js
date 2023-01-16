@@ -31,14 +31,46 @@ test('example game 1', () => {
 
 // Test the Hand class.
 test('example hand 1', () => {
-  const handRaw = `
-    Kc 9s Ks Kd 9d 3c 6d
-  `;
+  const cards = ["Kc", "9s", "Ks", "Kd", "9d", "3c", "6d"];
 
-  const hand = new Hand(handRaw);
+  const hand = new Hand(cards);
 
-  // TODO: Write Hand class tests....
-  expect(true).toBe(true);
+  // Validate kinds are processed correctly.
+  expect(hand.kinds).toMatchObject({
+    "2": 0,
+    "3": 1,
+    "4": 0,
+    "5": 0,
+    "6": 1,
+    "7": 0,
+    "8": 0,
+    "9": 2,
+    "T": 0,
+    "J": 0,
+    "Q": 0,
+    "K": 3,
+    "A": 0
+  });
+  
+  // Validate suits are processed correctly.
+  expect(hand.suits).toMatchObject({
+    "s": 2,
+    "c": 2,
+    "h": 0,
+    "d": 3
+  });
+  
+  // Validate highest card is determined correctly.
+  expect(hand.highestCard).toBe(13);
+
+  // Validate max sequence is determined correctly.
+  expect(hand.maxSequence).toMatchObject([
+    {
+      "kind": "K",
+      "suit": "c",
+      "value": 13
+    }
+  ]);
 });
 
 
